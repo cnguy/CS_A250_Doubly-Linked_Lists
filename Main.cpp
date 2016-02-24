@@ -36,7 +36,31 @@ int main()
 	cout << "Searching for a 6: " << boolalpha << intList.search(6) << endl;
 	cout << endl;
 
+	cout << "Deleting one bye one." << endl << endl;
+	cout << "Deleting 1." << endl;
+	intList.deleteNode(1);
+	intList.printForward();
+	cout << endl;
+	cout << "Deleting 2." << endl;
+	intList.deleteNode(2);
+	intList.printForward();
+	cout << endl;
+	cout << "Deleting 3." << endl;
+	intList.deleteNode(3);
+	intList.printForward();
+	cout << endl;
+	cout << "Deleting 4." << endl;
+	intList.deleteNode(4);
+	intList.printForward();
+	cout << endl;
+	cout << "Deleting 5." << endl;
+	intList.deleteNode(5);
+	//intList.printForward();
+	cout << "Deleting 6." << endl;
+	intList.deleteNode(6);
+	//intList.printForward();
 
+	cout << endl << endl;
 
 	cout << endl << endl;
 	//system("Pause");

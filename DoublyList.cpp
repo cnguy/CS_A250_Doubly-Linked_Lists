@@ -11,7 +11,7 @@ DoublyList::DoublyList()
 //destructor
 DoublyList::~DoublyList()
 {
-	//destroyList();
+	destroyList();
 }
 
 //printForward
@@ -47,6 +47,7 @@ void DoublyList::printBackwards() const
 		}
 	}
 }
+
 //insertFront
 void DoublyList::insertFront(int newData)
 {
@@ -77,9 +78,7 @@ bool DoublyList::search(int key) const
 		while (current != NULL)
 		{
 			if (current->getData() == key)
-			{
 				return true;
-			}
 			else
 				current = current->getNextLink();
 		}
