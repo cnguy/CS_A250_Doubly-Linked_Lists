@@ -86,6 +86,24 @@ bool DoublyList::search(int key) const
 	return false;
 }
 
+int DoublyList::sum() const
+{
+	if (first == NULL)
+		cerr << "Cannot delete from an empty list." << endl;
+	else
+	{
+		Node *current = first;
+		int total = 0;
+		while (current != NULL)
+		{
+			total += current->getData();
+			current = current->getNextLink();
+		}
+		return total;
+	}
+	return 0;
+}
+
 //deleteNode
 void DoublyList::deleteNode(int deleteData)
 {

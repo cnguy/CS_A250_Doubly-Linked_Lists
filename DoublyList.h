@@ -40,6 +40,8 @@ public:
 	bool search(int key) const;
 	// deleteNode 
 	void deleteNode(int deleteData);
+	// sum
+	int sum() const;
 	// destroyList
 	void destroyList();
 	// destructor 

@@ -30,6 +30,9 @@ int main()
 	intList.printBackwards();
 	cout << endl << endl;
 
+	cout << "Calculating the sum." << endl;
+	cout << "Sum: " << intList.sum() << endl << endl;
+
 	cout << "Searching for a 1: " << boolalpha << intList.search(1) << endl;
 	cout << "Searching for a 2: " << boolalpha << intList.search(2) << endl;
 	cout << "Searching for a 5: " << boolalpha << intList.search(5) << endl;
