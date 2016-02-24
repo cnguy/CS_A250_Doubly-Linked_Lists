@@ -6,7 +6,6 @@
 
 #include "DoublyList.h"
 
-#include <iostream>
 using namespace std;
 
 int main()
@@ -21,9 +20,15 @@ int main()
 	intList.insertFront(3);
 	intList.insertFront(2);
 	intList.insertFront(1);
+	cout << endl;
 
+	cout << "Printing with a forward iterator." << endl;
 	intList.printForward();
 	cout << endl;
+
+	cout << "Printing with a reverse iterator." << endl;
+	intList.printBackwards();
+	cout << endl << endl;
 
 	cout << "Searching for a 1: " << boolalpha << intList.search(1) << endl;
 	cout << "Searching for a 2: " << boolalpha << intList.search(2) << endl;
@@ -34,6 +39,6 @@ int main()
 
 
 	cout << endl << endl;
-	system("Pause");
+	//system("Pause");
 	return 0;
 }

@@ -30,8 +30,10 @@ class DoublyList
 public:
 	// constructor
 	DoublyList();
-	// print
+	// printForward
 	void printForward() const;
+	// printBackwards
+	void printBackwards() const;
 	// insertFront 
 	void insertFront(int newData);
 	// search 

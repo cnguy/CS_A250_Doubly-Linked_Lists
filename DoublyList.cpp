@@ -31,6 +31,22 @@ void DoublyList::printForward() const
 	}
 }
 
+//printBackwards
+void DoublyList::printBackwards() const
+{
+	if (first == NULL)
+		cerr << "Cannot print frmo an empty list." << endl;
+	else
+	{
+		Node *rCurrent = last; // r stands for reverse
+
+		while (rCurrent != NULL)
+		{
+			cout << rCurrent->getData() << " ";
+			rCurrent = rCurrent->getPreviousLink();
+		}
+	}
+}
 //insertFront
 void DoublyList::insertFront(int newData)
 {
@@ -43,8 +59,8 @@ void DoublyList::insertFront(int newData)
 	}
 	else
 	{
-		first->setPreviousLink(newNode);
-		first = newNode;
+		first->setPreviousLink(newNode); // sets the prevLink of the ORIGINAL node that was first TO the new node
+		first = newNode; // newNode is now the first node
 	}
 	++count;
 }
@@ -57,12 +73,11 @@ bool DoublyList::search(int key) const
 	else
 	{
 		Node *current = first;
-		bool found = false;
-		while (current != NULL && !(found))
+
+		while (current != NULL)
 		{
 			if (current->getData() == key)
 			{
-				found = true;
 				return true;
 			}
 			else
