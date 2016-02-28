@@ -208,12 +208,12 @@ void DoublyList::deleteNode(int deleteData)
 	}
 }
 
-//copytolist
+//copyTolist
 void DoublyList::copyToList(DoublyList& otherList)
 {
-	if (first == NULL || otherList.first == NULL)
+	if (first == NULL)
 	{
-		cerr << "One of the lists is empty." << endl;
+		cerr << "The calling list is empty." << endl;
 		exit(1);
 	}
 	else
@@ -223,7 +223,7 @@ void DoublyList::copyToList(DoublyList& otherList)
 		Node *current = first;
 		while (current != NULL)
 		{
-			otherList.insertFront(current->getData());
+			otherList.insertBack(current->getData());
 			current = current->getNextLink();
 		}
 	}

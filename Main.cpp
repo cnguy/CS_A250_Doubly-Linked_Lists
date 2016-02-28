@@ -94,7 +94,7 @@ int main()
 	testList.insertBack(2);
 	testList.insertBack(3);
 	cout << "testList: ";
-	testList.printBackwards();
+	testList.printForward();
 	cout << endl << endl;
 
 	cout << endl;
