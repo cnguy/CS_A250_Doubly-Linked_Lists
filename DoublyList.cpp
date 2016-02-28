@@ -66,6 +66,24 @@ void DoublyList::insertFront(int newData)
 	++count;
 }
 
+// insertBack
+void DoublyList::insertBack(int newData)
+{
+	Node *newNode = new Node(newData, NULL, NULL);
+
+	if (first == NULL)
+	{
+		first = newNode;
+		last = newNode;
+	}
+	else
+	{
+		last->setNextLink(newNode);
+		last->getNextLink()->setPreviousLink(last);
+		last = newNode;
+	}
+}
+
 //search
 bool DoublyList::search(int key) const
 {
@@ -186,6 +204,27 @@ void DoublyList::deleteNode(int deleteData)
 				delete current;
 				current = NULL;
 			}
+		}
+	}
+}
+
+//copytolist
+void DoublyList::copyToList(DoublyList& otherList)
+{
+	if (first == NULL || otherList.first == NULL)
+	{
+		cerr << "One of the lists is empty." << endl;
+		exit(1);
+	}
+	else
+	{
+		otherList.destroyList();
+
+		Node *current = first;
+		while (current != NULL)
+		{
+			otherList.insertFront(current->getData());
+			current = current->getNextLink();
 		}
 	}
 }

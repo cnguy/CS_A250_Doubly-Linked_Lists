@@ -74,6 +74,30 @@ int main()
 	cout << "Front: " << intList.front() << endl;
 	cout << "Back: " << intList.back() << endl;
 	cout << endl << endl;
+
+	DoublyList testList;
+	testList.insertFront(404);
+	cout << "intList: ";
+	intList.printForward();
+	cout << endl;
+	cout << "testList: ";
+	testList.printForward();
+	cout << endl;
+	cout << "intList.copyToList(testList);" << endl;
+	intList.copyToList(testList);
+	cout << "testList: ";
+	testList.printForward();
+	cout << endl;
+
+	cout << "insertBack 1 2 3" << endl;
+	testList.insertBack(1);
+	testList.insertBack(2);
+	testList.insertBack(3);
+	cout << "testList: ";
+	testList.printBackwards();
+	cout << endl << endl;
+
+	cout << endl;
 	//system("Pause");
 	return 0;
 }

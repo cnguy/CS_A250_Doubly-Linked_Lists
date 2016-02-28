@@ -36,7 +36,9 @@ public:
 	void printBackwards() const;
 	// insertFront 
 	void insertFront(int newData);
-	// search 
+	// insertBack
+	void insertBack(int newData);
+	// search
 	bool search(int key) const;
 	// deleteNode 
 	void deleteNode(int deleteData);
@@ -46,6 +48,8 @@ public:
 	int front() const;
 	// back
 	int back() const;
+	// copyToList
+	void copyToList(DoublyList& otherList);
 	// destroyList
 	void destroyList();
 	// destructor 
