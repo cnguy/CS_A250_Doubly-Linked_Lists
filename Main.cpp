@@ -62,9 +62,17 @@ int main()
 	cout << "Deleting 6." << endl;
 	intList.deleteNode(6);
 	//intList.printForward();
-
 	cout << endl << endl;
-
+	//cout << "Front: " << intList.front() << endl;
+	cout << "insertFront 3 2 1 0" << endl;
+	intList.insertFront(3);
+	intList.insertFront(2);
+	intList.insertFront(1);
+	intList.insertFront(0);
+	intList.printForward();
+	cout << endl;
+	cout << "Front: " << intList.front() << endl;
+	cout << "Back: " << intList.back() << endl;
 	cout << endl << endl;
 	//system("Pause");
 	return 0;

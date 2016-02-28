@@ -86,6 +86,7 @@ bool DoublyList::search(int key) const
 	return false;
 }
 
+//sum
 int DoublyList::sum() const
 {
 	if (first == NULL)
@@ -102,6 +103,30 @@ int DoublyList::sum() const
 		return total;
 	}
 	return 0;
+}
+
+//front
+int DoublyList::front() const
+{
+	if (first == NULL)
+	{
+		cerr << "The list is empty." << endl;
+		exit(1);
+	}
+	else
+		return first->getData();
+}
+
+//back
+int DoublyList::back() const
+{
+	if (last == NULL)
+	{
+		cerr << "The list is empty." << endl;
+		exit(1);
+	}
+	else
+		return last->getData();
 }
 
 //deleteNode

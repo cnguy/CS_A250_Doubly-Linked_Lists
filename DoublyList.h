@@ -42,6 +42,10 @@ public:
 	void deleteNode(int deleteData);
 	// sum
 	int sum() const;
+	// front
+	int front() const;
+	// back
+	int back() const;
 	// destroyList
 	void destroyList();
 	// destructor 
