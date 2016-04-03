@@ -4,8 +4,7 @@
 DoublyList::DoublyList()
 {
 	count = 0;
-	first = NULL;
-	last = NULL;
+	first = last = NULL;
 }
 
 //destructor
@@ -54,10 +53,7 @@ void DoublyList::insertFront(int newData)
 	Node *newNode = new Node(newData, NULL, first); // points to first, prev link to null
 
 	if (first == NULL)
-	{
-		first = newNode;
-		last = newNode;
-	}
+		first = last = newNode;
 	else
 	{
 		first->setPreviousLink(newNode); // sets the prevLink of the ORIGINAL node that was first TO the new node
@@ -72,10 +68,7 @@ void DoublyList::insertBack(int newData)
 	Node *newNode = new Node(newData, NULL, NULL);
 
 	if (first == NULL)
-	{
-		first = newNode;
-		last = newNode;
-	}
+		first = last = newNode;
 	else
 	{
 		last->setNextLink(newNode);
@@ -209,23 +202,79 @@ void DoublyList::deleteNode(int deleteData)
 }
 
 //copyTolist
-void DoublyList::copyToList(DoublyList& otherList)
+void DoublyList::copyToList(DoublyList& otherList) const
 {
+	// calling object is empty
 	if (first == NULL)
-	{
-		cerr << "The calling list is empty." << endl;
-		exit(1);
-	}
-	else
-	{
 		otherList.destroyList();
+	else if (count == otherList.count)
+	{
+		// the calling object and the parameter object have the same number of nodes
+		Node *current = first; // calling object
+		Node *otherCurrent = otherList.first;
 
-		Node *current = first;
 		while (current != NULL)
 		{
-			otherList.insertBack(current->getData());
+			// copy from calling object to current object
+			otherCurrent->setData(current->getData());
+
+			// iterate to next node
 			current = current->getNextLink();
+			otherCurrent = otherCurrent->getNextLink();
 		}
+	}
+	else if (otherList.count < count)
+	{
+		Node *current = first;
+		Node *otherCurrent = otherList.first;
+
+		while (current != NULL)
+		{
+			if (otherCurrent == NULL)
+			{
+				// otherCurrent is null, so create a new node to match the node we're trying to copy from
+				Node *newNode = new Node(0, otherList.last, NULL);
+
+				if (otherList.first == NULL)
+				{
+					otherList.first = newNode;
+					otherList.last = newNode;
+					otherCurrent = otherList.last;
+				}
+				else
+				{
+					otherList.last->setNextLink(newNode);
+					otherList.last->getNextLink()->setPreviousLink(otherList.last);
+					otherList.last = newNode;
+					otherCurrent = otherList.last;
+				}
+				otherList.count++;
+			}
+
+			otherCurrent->setData(current->getData());
+
+			current = current->getNextLink();
+			otherCurrent = otherCurrent->getNextLink();
+		}
+	}
+	else // the parameter object has more nodes than the calling object
+	{
+		Node *current = first;
+		Node *otherCurrent = otherList.first;
+
+		while (current != NULL)
+		{
+			otherCurrent->setData(current->getData());
+
+			current = current->getNextLink();
+			otherCurrent = otherCurrent->getNextLink();
+		}
+
+		otherList.last = otherCurrent->getPreviousLink();
+		otherList.last->setNextLink(NULL);
+		delete otherCurrent;
+		otherCurrent = NULL;
+		otherList.count -= otherList.count - count;
 	}
 }
 

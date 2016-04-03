@@ -49,7 +49,7 @@ public:
 	// back
 	int back() const;
 	// copyToList
-	void copyToList(DoublyList& otherList);
+	void copyToList(DoublyList& otherList) const;
 	// destroyList
 	void destroyList();
 	// destructor 
