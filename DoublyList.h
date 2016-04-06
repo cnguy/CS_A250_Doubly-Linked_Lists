@@ -11,12 +11,12 @@ public:
     Node () : data(0), nextLink(NULL), previousLink(NULL) {}
     Node (int theData, Node *previous, Node *next)
             : data(theData), nextLink(next), previousLink(previous) {}
-    Node *getNextLink( ) const { return nextLink; }
-    Node *getPreviousLink( ) const { return previousLink; }
+    Node *getNext() const { return nextLink; }
+    Node *getPrev() const { return previousLink; }
     int getData( ) const { return data; }
     void setData(int theData) { data = theData; }
-    void setNextLink(Node *pointer) { nextLink = pointer; }
-    void setPreviousLink(Node *pointer) { previousLink = pointer; }
+    void setNext(Node *pointer) { nextLink = pointer; }
+    void setPrev(Node *pointer) { previousLink = pointer; }
 	~Node(){}
 private:
     int data;
@@ -50,6 +50,8 @@ public:
 	int back() const;
 	// copyToList
 	void copyToList(DoublyList& otherList) const;
+	// moveKeyNodeToFirst
+	void moveKeyNodeToFirst(int key);
 	// destroyList
 	void destroyList();
 	// destructor 

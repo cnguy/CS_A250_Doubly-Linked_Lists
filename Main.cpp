@@ -97,7 +97,95 @@ int main()
 	testList.printForward();
 	cout << endl << endl;
 
+	cout << "Creating basicList and inserting 1 2 3 4 5 in order" << endl;
+	DoublyList basicList;
+	basicList.insertBack(1);
+	basicList.insertBack(2);
+	basicList.insertBack(3);
+	basicList.insertBack(4);
+	basicList.insertBack(5);
+	basicList.printForward();
 	cout << endl;
+	basicList.printBackwards();
+	cout << endl;
+
+	cout << "---moveKeyNodeToFirst(5)---" << endl;
+	basicList.moveKeyNodeToFirst(5);
+	basicList.printForward();
+	cout << endl;
+	basicList.printBackwards();
+	cout << endl;
+
+	cout << "---moveKeyNodeToFirst(3)---" << endl;
+	basicList.moveKeyNodeToFirst(3);
+	basicList.printForward();
+	cout << endl;
+	basicList.printBackwards();
+	cout << endl;
+
+	cout << "---moveKeyNodeToFirst(4)---" << endl;
+	basicList.moveKeyNodeToFirst(4);
+	basicList.printForward();
+	cout << endl;
+	basicList.printBackwards();
+	cout << endl;
+
+	cout << "---moveKeyNodeToFirst(3)---" << endl;
+	basicList.moveKeyNodeToFirst(3);
+	basicList.printForward();
+	cout << endl;
+	basicList.printBackwards();
+	cout << endl;
+
+	cout << "---moveKeyNodeToFirst(1)---" << endl;
+	basicList.moveKeyNodeToFirst(1);
+	basicList.printForward();
+	cout << endl;
+	basicList.printBackwards();
+	cout << endl;
+
+	cout << "---moveKeyNodeToFirst(3)---" << endl;
+	basicList.moveKeyNodeToFirst(3);
+	basicList.printForward();
+	cout << endl;
+	basicList.printBackwards();
+	cout << endl;
+
+	cout << "---moveKeyNodeToFirst(2)---" << endl;
+	basicList.moveKeyNodeToFirst(2);
+	basicList.printForward();
+	cout << endl;
+	basicList.printBackwards();
+	cout << endl;
+
+	cout << endl;
+	cout << "emptyList for moving" << endl;
+	DoublyList emptyList;
+	emptyList.moveKeyNodeToFirst(3);
+	cout << endl;
+
+	cout << "twoItemList for moving" << endl;
+	DoublyList twoItemList;
+	twoItemList.insertBack(1);
+	twoItemList.insertBack(2);
+	twoItemList.printForward();
+	cout << endl;
+	twoItemList.printBackwards();
+	cout << endl;
+
+	cout << "moveKeyNodeToFirst 2" << endl;
+	twoItemList.moveKeyNodeToFirst(2);
+	twoItemList.printForward();
+	cout << endl;
+	twoItemList.printBackwards();
+	cout << endl;
+	cout << "moveKeyNodeToFirst 2" << endl;
+	twoItemList.moveKeyNodeToFirst(2);
+	twoItemList.printForward();
+	cout << endl;
+	twoItemList.printBackwards();
+	cout << endl;
+
 	//system("Pause");
 	return 0;
 }

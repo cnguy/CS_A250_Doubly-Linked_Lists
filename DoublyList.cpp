@@ -21,11 +21,11 @@ void DoublyList::printForward() const
 	else
 	{
 		Node *current = first;
-
+        cout << "FORWARDS: ";
 		while (current != NULL)
 		{
 			cout << current->getData() << " ";
-			current = current->getNextLink();
+			current = current->getNext();
 		}
 	}
 }
@@ -38,11 +38,11 @@ void DoublyList::printBackwards() const
 	else
 	{
 		Node *rCurrent = last; // r stands for reverse
-
+        cout << "REVERSE: ";
 		while (rCurrent != NULL)
 		{
 			cout << rCurrent->getData() << " ";
-			rCurrent = rCurrent->getPreviousLink();
+			rCurrent = rCurrent->getPrev();
 		}
 	}
 }
@@ -56,7 +56,7 @@ void DoublyList::insertFront(int newData)
 		first = last = newNode;
 	else
 	{
-		first->setPreviousLink(newNode); // sets the prevLink of the ORIGINAL node that was first TO the new node
+        first->setPrev(newNode); // sets the prevLink of the ORIGINAL node that was first TO the new node
 		first = newNode; // newNode is now the first node
 	}
 	++count;
@@ -71,8 +71,8 @@ void DoublyList::insertBack(int newData)
 		first = last = newNode;
 	else
 	{
-		last->setNextLink(newNode);
-		last->getNextLink()->setPreviousLink(last);
+        last->setNext(newNode);
+        last->getNext()->setPrev(last);
 		last = newNode;
 	}
 }
@@ -91,7 +91,7 @@ bool DoublyList::search(int key) const
 			if (current->getData() == key)
 				return true;
 			else
-				current = current->getNextLink();
+				current = current->getNext();
 		}
 	}
 	return false;
@@ -109,7 +109,7 @@ int DoublyList::sum() const
 		while (current != NULL)
 		{
 			total += current->getData();
-			current = current->getNextLink();
+			current = current->getNext();
 		}
 		return total;
 	}
@@ -153,13 +153,13 @@ void DoublyList::deleteNode(int deleteData)
 		// Case 2: The node to be deleted is the first node
 		if (first->getData() == deleteData)
 		{
-			first = first->getNextLink();
+			first = first->getNext();
 
 			// Case 2a: The list has only one node.
 			if (first == NULL)
 				last = NULL;
 			else
-				first->setPreviousLink(NULL);
+                first->setPrev(NULL);
 
 			--count;
 			delete current;
@@ -174,7 +174,7 @@ void DoublyList::deleteNode(int deleteData)
 				if (current->getData() == deleteData)
 					found = true;
 				else
-					current = current->getNextLink();
+					current = current->getNext();
 			}
 
 			if (current == NULL) // if (!found)
@@ -184,14 +184,14 @@ void DoublyList::deleteNode(int deleteData)
 				// Case 3: The item to be deleted is in the middle of the list.
 				if (current != last)
 				{
-					current->getPreviousLink()->setNextLink(current->getNextLink());
-					current->getNextLink()->setPreviousLink(current->getPreviousLink());
+                    current->getPrev()->setNext(current->getNext());
+                    current->getNext()->setPrev(current->getPrev());
 				}
 				// Case 4: The item to be deleted is the last node.
 				else
 				{
-					last = current->getPreviousLink();
-					last->setNextLink(NULL);
+					last = current->getPrev();
+                    last->setNext(NULL);
 				}
 				--count;
 				delete current;
@@ -219,8 +219,8 @@ void DoublyList::copyToList(DoublyList& otherList) const
 			otherCurrent->setData(current->getData());
 
 			// iterate to next node
-			current = current->getNextLink();
-			otherCurrent = otherCurrent->getNextLink();
+			current = current->getNext();
+			otherCurrent = otherCurrent->getNext();
 		}
 	}
 	else if (otherList.count < count)
@@ -243,8 +243,8 @@ void DoublyList::copyToList(DoublyList& otherList) const
 				}
 				else
 				{
-					otherList.last->setNextLink(newNode);
-					otherList.last->getNextLink()->setPreviousLink(otherList.last);
+                    otherList.last->setNext(newNode);
+                    otherList.last->getNext()->setPrev(otherList.last);
 					otherList.last = newNode;
 					otherCurrent = otherList.last;
 				}
@@ -253,8 +253,8 @@ void DoublyList::copyToList(DoublyList& otherList) const
 
 			otherCurrent->setData(current->getData());
 
-			current = current->getNextLink();
-			otherCurrent = otherCurrent->getNextLink();
+			current = current->getNext();
+			otherCurrent = otherCurrent->getNext();
 		}
 	}
 	else // the parameter object has more nodes than the calling object
@@ -266,19 +266,74 @@ void DoublyList::copyToList(DoublyList& otherList) const
 		{
 			otherCurrent->setData(current->getData());
 
-			current = current->getNextLink();
-			otherCurrent = otherCurrent->getNextLink();
+			current = current->getNext();
+			otherCurrent = otherCurrent->getNext();
 		}
 
-		otherList.last = otherCurrent->getPreviousLink();
-		otherList.last->setNextLink(NULL);
+		otherList.last = otherCurrent->getPrev();
+        otherList.last->setNext(NULL);
 		delete otherCurrent;
 		otherCurrent = NULL;
 		otherList.count -= otherList.count - count;
 	}
 }
 
-//destroyList - When would we use this function?
+void DoublyList::moveKeyNodeToFirst(int key)
+{
+	if (first == NULL)
+    {
+        cerr << "List is empty. No items to move." << endl;
+        cout << "error, no items to move." << endl;
+    }
+	else if (last->getData() == key)
+	{
+        last->setNext(first);
+        first->setPrev(last);
+        first = last;
+        last = last->getPrev();
+        last->setNext(NULL);
+        first->setPrev(NULL);
+//        last->setNext(first);
+//        first->setPrev(last);
+//
+//        Node *temp = last;
+//        last = last->getPrev();
+//        temp->setPrev(NULL);
+//        last->setNext(NULL);
+//        first = temp;
+//
+//        temp = last->getNext();
+//        delete temp;
+	}
+	else
+	{
+		// Node with key is anywhere but the first and the last.
+        if (first->getData() != key)
+        {
+            Node *current = first->getNext();
+            bool found = false;
+
+            while (current != last->getPrev() && !found)
+            {
+                if (current->getData() == key)
+                    found = true;
+                else
+                    current = current->getNext();
+            }
+
+            first->setPrev(current);
+            current->getPrev()->setNext(current->getNext());
+            current->getNext()->setPrev(current->getPrev());
+            current->setNext(first);
+            current->setPrev(NULL);
+            first = current;
+
+            current = last->getNext();
+            delete current;
+        }
+	}
+}
+
 void DoublyList::destroyList()
 {
 	Node *temp;
@@ -286,7 +341,7 @@ void DoublyList::destroyList()
 	while (first != NULL)
 	{
 		temp = first;
-		first = first->getNextLink();
+		first = first->getNext();
 		delete temp;
 		temp = NULL; // not necessary
 	}
