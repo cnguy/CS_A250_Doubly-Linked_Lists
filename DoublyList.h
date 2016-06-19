@@ -8,29 +8,29 @@ using namespace std;
 
 class Node {
 public:
-    Node() : data(0), nextLink(NULL), previousLink(NULL) { }
+    Node() : data(0), _next(nullptr), _prev(nullptr) { }
 
-    Node(int theData, Node *previous, Node *next)
-            : data(theData), nextLink(next), previousLink(previous) { }
+    Node(int newData, Node *newPrev, Node *newNext)
+            : data(newData), _next(newNext), _prev(newPrev) { }
 
-    Node *getNext() const { return nextLink; }
+    Node *getNext() const { return _next; }
 
-    Node *getPrev() const { return previousLink; }
+    Node *getPrev() const { return _prev; }
 
     int getData() const { return data; }
 
-    void setData(int theData) { data = theData; }
+    void setData(int newData) { data = newData; }
 
-    void setNext(Node *pointer) { nextLink = pointer; }
+    void setNext(Node *newNext) { _next = newNext; }
 
-    void setPrev(Node *pointer) { previousLink = pointer; }
+    void setPrev(Node *newPrev) { _prev = newPrev; }
 
     ~Node() { }
 
 private:
     int data;
-    Node *nextLink;
-    Node *previousLink;
+    Node *_next;
+    Node *_prev;
 };
 
 

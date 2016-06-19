@@ -201,7 +201,7 @@ int main() {
     stack.printForward();
     cout << endl;
 
-    cout << "CReATING A ONE ELEMENT LIST." << endl;
+    cout << "CREATING A ONE ELEMENT LIST." << endl;
     DoublyList oneElemList;
     oneElemList.insertBack(3);
     oneElemList.moveKeyNodeToFirst(3);

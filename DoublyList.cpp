@@ -13,9 +13,9 @@ DoublyList::~DoublyList() {
 
 //printForward
 void DoublyList::printForward() const {
-    if (first == nullptr)
+    if (first == nullptr) {
         cerr << "Cannot print from an empty list." << endl;
-    else {
+    } else {
         Node *current = first;
         cout << "FORWARDS: ";
         while (current != nullptr) {
@@ -97,7 +97,7 @@ bool DoublyList::search(int key) const {
 //sum
 int DoublyList::sum() const {
     if (first == nullptr) {
-        cerr << "Cannot delete from an empty list." << endl;
+        cerr << "Cannot calculate the sum of an empty list." << endl;
     } else {
         Node *current = first;
         int total = 0;
@@ -225,9 +225,7 @@ void DoublyList::copyToList(DoublyList &otherList) const {
             current = current->getNext();
             otherCurrent = otherCurrent->getNext();
         }
-    }
-    else // the parameter object has more nodes than the calling object
-    {
+    } else { // the parameter object has more nodes than the calling object
         Node *current = first;
         Node *otherCurrent = otherList.first;
 
